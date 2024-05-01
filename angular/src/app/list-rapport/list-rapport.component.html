@@ -1,0 +1,39 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styled Table</title>
+  <style>
+    /* Include the CSS styles here */
+    /* Paste the CSS styles provided earlier */
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h3>List Rapport :</h3>
+            <a href="/ajout_rapport_form">
+                <button>Add rapport</button>
+            </a>
+        </div>
+  <table>
+    <thead>
+      <tr>
+        <th>incident</th>
+        <th>description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rapport of listRapports">
+        <td>{{rapport.id}}</td>
+        <td>{{rapport.description}}</td>
+      </tr>
+      
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

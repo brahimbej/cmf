@@ -22,6 +22,8 @@ public class Incident {
     private String echeance;
     private String status;
     private String priorite;
+    @OneToOne(mappedBy = "incident", cascade = CascadeType.ALL)
+    private Rapport rapport;
 
 
 

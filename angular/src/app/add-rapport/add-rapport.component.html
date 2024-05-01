@@ -1,0 +1,18 @@
+<body>
+    <div class="session">
+      
+      <form action="" class="log-in" autocomplete="off" [formGroup]="FormInput" (ngSubmit)="submit()"> 
+        <h4>Ajout Rapport</h4>
+        <!-- <p>Welcome back! Log in to your account to view today's clients:</p> -->
+        <div class="floating-label">
+          <input placeholder="rapport" type="text" name="rapport" id="rapport" autocomplete="off" formControlName="rapport">
+          <label for="rapport">Rapport:</label>
+
+        </div>
+        <div class="floating-label">
+            <textarea name="description" id="description" cols="30" rows="10" placeholder="description"></textarea>
+        </div>
+        <button type="submit">Ajout</button>
+      </form>
+    </div>
+  </body>

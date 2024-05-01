@@ -13,6 +13,8 @@ import { TableComponent } from './table/table.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AjoutIncidentComponent } from './ajout-incident/ajout-incident.component';
 import { AjoutIncidentFormComponent } from './ajout-incident-form/ajout-incident-form.component';
+import { ListRapportComponent } from './list-rapport/list-rapport.component';
+import { AddRapportComponent } from './add-rapport/add-rapport.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AjoutIncidentFormComponent } from './ajout-incident-form/ajout-incident
     TableComponent,
     SidebarComponent,
     AjoutIncidentComponent,
-    AjoutIncidentFormComponent
+    AjoutIncidentFormComponent,
+    ListRapportComponent,
+    AddRapportComponent
   ],
   imports: [
     BrowserModule,
