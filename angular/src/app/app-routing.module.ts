@@ -8,6 +8,7 @@ import { AjoutIncidentFormComponent } from './ajout-incident-form/ajout-incident
 import { TableComponent } from './table/table.component';
 import { ListRapportComponent } from './list-rapport/list-rapport.component';
 import { AddRapportComponent } from './add-rapport/add-rapport.component';
+import { CrudUsersComponent } from './crud-users/crud-users.component';
 
 const routes: Routes = [
   {path:"login", component:LoginComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path:"listrapport", component:ListRapportComponent},
   {path:"ajout_incident_form", component:AjoutIncidentFormComponent},
   {path:"ajout_rapport_form", component:AddRapportComponent},
+  {path:"all_users", component:CrudUsersComponent},
   {path:"", component:HomeComponent},
 
 ];

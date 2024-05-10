@@ -11,10 +11,16 @@ public class Rapport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
     private String description;
-    @OneToOne
-    @JoinColumn(name = "incident_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "incident_id")
     private Incident incident;
 
-
+    @Override
+    public String toString() {
+        return "Rapport{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                '}';
+    }
 
 }

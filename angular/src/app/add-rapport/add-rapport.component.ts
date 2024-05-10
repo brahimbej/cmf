@@ -29,19 +29,23 @@ export class AddRapportComponent {
   submit() {
     // Afficher les informations du formulaire dans la console
     console.log("Form input:", this.FormInput.value);
-  
-    // Appeler le service de connexion
-    const currentDate: Date = new Date();
-const dateString: string = currentDate.toLocaleDateString();
-const formattedDate = dateString.toLocaleString();
-this.FormInput.value.echeance = formattedDate;
+  const rapport = {
+    incident : {
+      id : this.FormInput.value.incident
+    },
+    description : this.FormInput.value.description
+  }
 
-    this.rapportService.addRapport(this.FormInput.value).subscribe(
+  console.log(rapport)
+    
+console.log(this.FormInput.value)
+
+    this.rapportService.addRapport(rapport).subscribe(
       (response: any) => {
         console.log('success:', response);
         
       
-              this.route.navigate(['/dashboard']); // Utiliser la route admin appropriée
+              this.route.navigate(['/listrapport']); // Utiliser la route admin appropriée
             }, (error : any) => {
               console.log('error:', error);
             }

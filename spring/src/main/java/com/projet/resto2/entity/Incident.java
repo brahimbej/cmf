@@ -6,6 +6,7 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -22,9 +23,15 @@ public class Incident {
     private String echeance;
     private String status;
     private String priorite;
-    @OneToOne(mappedBy = "incident", cascade = CascadeType.ALL)
-    private Rapport rapport;
+    @OneToMany(mappedBy = "incident")
+    private List<Rapport> rapport = new ArrayList<>();
 
-
+    @Override
+    public String toString() {
+        return "Incident{" +
+                "id=" + id +
+                ", incident='" + incident + '\'' +
+                '}';
+    }
 
 }

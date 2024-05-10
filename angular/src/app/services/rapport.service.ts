@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class RapportService {
 
-  rapportUrl:string  = " http://localhost:3000/api/rapport"
+  rapportUrl:string  = "http://localhost:3000/api/rapport"
 
    httpOptions = {
     headers: new HttpHeaders({
@@ -18,14 +18,19 @@ export class RapportService {
 
   constructor(private httpclient: HttpClient) { }
 
-  addRapport(obj:any): Observable<{ rapport: any}> {
+  // addRapport(obj:any): Observable<{ rapport: any}> {
 
-      console.log(localStorage.getItem('token'))
-  return this.httpclient.post<{ rapport: any }>(`${this.rapportUrl}/`, obj, this.httpOptions);
+  //     console.log(localStorage.getItem('token'))
+  //     console.log(obj)
+  // return this.httpclient.post<{ rapport: any }>(`${this.rapportUrl}/ajout`, obj, this.httpOptions);
 
-  }
+  // }
 
-  getAllRapports(): Observable<{ rapports: any}> {
-    return this.httpclient.get<{ rapports: any }>(`${this.rapportUrl}/getAll`, this.httpOptions);
+  addRapport(obj:any): Observable<{ incident: any}> {
+return this.httpclient.post<{ incident: any }>(`${this.rapportUrl}/ajout`, obj, this.httpOptions);
+}
+
+  getAllRapports(): Observable<any> {
+    return this.httpclient.get<any>(`${this.rapportUrl}/getAll`, this.httpOptions);
   }
 }

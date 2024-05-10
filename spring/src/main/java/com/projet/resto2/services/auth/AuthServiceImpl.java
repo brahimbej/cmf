@@ -51,6 +51,23 @@ public class AuthServiceImpl implements AuthService{
     }
 
     @Override
+    public UserDto createUser(User userRequest) {
+        User user= new User();
+        user.setName(userRequest.getName());
+        user.setEmail(userRequest.getEmail());
+        user.setPassword(new BCryptPasswordEncoder().encode(userRequest.getPassword()));
+        user.setUserRole(UserRole.CUSTOMER);
+        User createdUser = userRepository.save(user);
+        UserDto UserDto = new UserDto();
+        UserDto.setId(createdUser.getId());
+
+
+
+        return UserDto;
+
+    }
+
+    @Override
     public boolean hasUserWithEmail(String email) {
         return userRepository.findFirstByEmail(email).isPresent();
     }

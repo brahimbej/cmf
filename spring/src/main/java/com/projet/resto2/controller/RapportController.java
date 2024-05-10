@@ -18,24 +18,38 @@ public class RapportController {
 
     private final RapportRepository rapportRepository;
 
-    @PostMapping("/")
+    @PostMapping("/add")
     public ResponseEntity<?> creerRapport(@RequestBody Rapport rapport) {
+        System.out.println("rapport here");
         System.out.println("rapport");
         System.out.println("rapport"+rapport.getDescription());
         System.out.println("rapport"+rapport.getIncident());
         rapportRepository.save(rapport);
         if (rapport == null)
             return new ResponseEntity<>
-                    ("incident not created, Come again later", HttpStatus.BAD_REQUEST);
+                    ("rapport not created, Come again later", HttpStatus.BAD_REQUEST);
 
         return new ResponseEntity<>(rapport, HttpStatus.CREATED);
     }
 
+    @PostMapping("/ajout")
+    public ResponseEntity<?> ajoutRapport(@RequestBody Rapport rapportRequest) {
+        System.out.println("rapport here");
+
+        Rapport rapport = rapportRepository.save(rapportRequest);
+        if (rapport == null)
+            return new ResponseEntity<>
+                    ("rapport not created", HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(rapport, HttpStatus.CREATED);
+    }
+
+
     @GetMapping("/getAll")
     public ResponseEntity<?> getIncidents() {
-        System.out.println("rapport");
-        List<Rapport> rapports = rapportRepository.findAll();
 
+        List<Rapport> rapports = rapportRepository.findAll();
+        System.out.println("getrapport");
         System.out.println(rapports);
         return new ResponseEntity<>(rapports, HttpStatus.OK);
     }

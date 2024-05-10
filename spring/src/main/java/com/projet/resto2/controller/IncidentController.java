@@ -38,7 +38,6 @@ public class IncidentController {
     public ResponseEntity<?> getIncidents() {
         System.out.println("getIncidents");
         List<Incident> incidents = incidentRepository.findAll();
-
         System.out.println(incidents);
         return new ResponseEntity<>(incidents, HttpStatus.OK);
     }
