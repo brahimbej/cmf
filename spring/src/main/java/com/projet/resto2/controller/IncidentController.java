@@ -26,13 +26,35 @@ public class IncidentController {
     @PostMapping("/")
     public ResponseEntity<?> creerIncident(@RequestBody Incident incident) {
 
-        incident.setStatus("pending");
+        incident.setStatus("En cours");
         incidentRepository.save(incident);
         if (incident == null)
             return new ResponseEntity<>
                 ("incident not created, Come again later", HttpStatus.BAD_REQUEST);
 
         return new ResponseEntity<>(incident, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateIncident(@PathVariable Long id,  @RequestBody Incident updatedIncident) {
+        System.out.println("update"+updatedIncident);
+        if (!incidentRepository.existsById(id)) {
+            return new ResponseEntity<>("Incident not found with id: " + id, HttpStatus.NOT_FOUND);
+        }
+
+        Incident existingIncident = incidentRepository.findById(id).orElse(null);
+        if (existingIncident != null) {
+            // Update only if the incident exists
+            existingIncident.setIncident(updatedIncident.getIncident());
+            existingIncident.setStatus(updatedIncident.getStatus());
+            existingIncident.setType(updatedIncident.getType());
+            existingIncident.setPriorite(updatedIncident.getPriorite());
+
+            Incident savedIncident = incidentRepository.save(existingIncident);
+            return new ResponseEntity<>(savedIncident, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>("Failed to update incident", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/getAll")

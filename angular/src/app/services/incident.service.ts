@@ -28,6 +28,10 @@ export class IncidentService {
     return this.httpclient.delete<{ id: any }>(`${this.IncidentUrl}/delete/${id}`, this.httpOptions);
 }
 
+updateIncident(obj:any): Observable<{ id: any}> {
+  return this.httpclient.put<{ id: any }>(`${this.IncidentUrl}/update/${obj.id}`,obj, this.httpOptions);
+}
+
   getAllIncidents(): Observable<{ incidents: any}> {
     return this.httpclient.get<{ incidents: any }>(`${this.IncidentUrl}/getAll`, this.httpOptions);
   }

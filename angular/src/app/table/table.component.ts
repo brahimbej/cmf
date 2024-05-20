@@ -49,8 +49,17 @@ export class TableComponent implements OnInit{
     )
   }
 
-  onUpdateIncident(form :any) {
-    
+  onUpdateIncident(incident :any) {
+    console.log(incident)
+    this.incidentService.updateIncident(incident).subscribe(
+      (response : any) => {
+        this.incidentService.getAllIncidents().subscribe(
+          (response : any) => {
+            console.log(response);
+            this.listIncidents= response;
+          }
+        )      }
+    )
   }
 
   public onOpenModal(incident: any, mode: string): void {

@@ -329,12 +329,12 @@ thead th.active,tbody td.active {
     height: auto;
 }
 
-button {
+.addbutton {
     padding: .4rem 0;
     border-radius: 5px;
     text-align: center;
-    background-color: #86e49d;
-    color: #006b21;
+    background-color: #0e2238;
+    color: #ffffff;
     width: 150px;
 }
 
@@ -342,10 +342,10 @@ button {
     padding: .4rem 0;
     border-radius: 5px;
     text-align: center;
-    background-color: #d70000;
+    background-color: #8e0909;
     color: #ffffff;
     width: 100px;
-    border-color: #d70000;
+    border-color: #8e0909;
     
 }
 
@@ -353,9 +353,13 @@ button {
     padding: .4rem 0;
     border-radius: 5px;
     text-align: center;
-    background-color: #00d75a;
+    background-color: #0027d7;
     color: #ffffff;
     width: 100px;
-    border-color: #00d75a;
+    border-color: #0027d7;
     
+}
+
+.status {
+    width: 90%;
 }

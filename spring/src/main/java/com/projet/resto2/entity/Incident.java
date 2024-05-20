@@ -31,6 +31,8 @@ public class Incident {
         return "Incident{" +
                 "id=" + id +
                 ", incident='" + incident + '\'' +
+                "status=" + status +
+                "priorite=" + priorite +
                 '}';
     }
 
