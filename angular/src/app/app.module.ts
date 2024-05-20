@@ -16,6 +16,7 @@ import { AjoutIncidentFormComponent } from './ajout-incident-form/ajout-incident
 import { ListRapportComponent } from './list-rapport/list-rapport.component';
 import { AddRapportComponent } from './add-rapport/add-rapport.component';
 import { CrudUsersComponent } from './crud-users/crud-users.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CrudUsersComponent } from './crud-users/crud-users.component';
     AjoutIncidentFormComponent,
     ListRapportComponent,
     AddRapportComponent,
-    CrudUsersComponent
+    CrudUsersComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,7 @@
  </head>
  
  <body>
-     <main class="table" id="customers_table">
+     <main class="table" id="customers_table" id="main-container">
          <section class="table__header">
              <h1>Incident</h1>
              <div class="input-group">
@@ -28,7 +28,7 @@
                      <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""></label>
                  </div>
              </div> -->
-             <a href="/ajout_incident_form"><button>Ajout ticket</button></a>
+             <a href="/ajout_incident_form"><button class="addbutton">Ajout ticket</button></a>
          </section>
          <section class="table__body">
              <table>
@@ -40,6 +40,7 @@
                          <th> Echeance <span class="icon-arrow"></span></th>
                          <th> Status <span class="icon-arrow"></span></th>
                          <th> Priorite <span class="icon-arrow"></span></th>
+                         <th> Options <span class="icon-arrow"></span></th>
                      </tr>
                  </thead>
                  <tbody>
@@ -56,6 +57,14 @@
                              <p *ngIf="incident.status == 'pending'" class="status pending">En cours</p>
                          </td>
                          <td> <strong> {{incident.priorite}}  </strong></td>
+                         <td>
+                            <button class="deletebtn" (click)="deleteIncident(incident.id)">
+                                Supprimer
+                            </button>
+                            <button class="editbtn" (click)="onOpenModal(incident, 'edit')" data-placement="top" data-original-title="Edit">
+                                Modifier
+                            </button>
+                         </td>
                      </tr>
 
                  </tbody>
@@ -63,6 +72,65 @@
          </section>
      </main>
      <script src="script.js"></script>
+
+     <!-- Edit Modal -->
+  <div class="modal fade" id="updateIncidentModal" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateEmployeeModalLabel">Modifier Incident {{editIncident?.incident}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+                <div class="form-group">
+                   <label for="name">Incident</label>
+                   <input type="text" ngModel="{{editIncident?.incident}}" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Prenom">
+                </div>
+                <div class="form-group">
+                    <label for="name">Type</label>
+                    <input type="text" ngModel="{{editIncident?.type}}" name="type" class="form-control" id="type" aria-describedby="emailHelp" placeholder="type">
+                 </div>
+                 <div class="form-group">
+                    <label for="name">Status</label>
+                    <td>
+                        <select [(ngModel)]="editIncident.status" >
+                          <option value="delivered" [selected]="editIncident.status == 'delivered'">Fini</option>
+                          <option value="cancelled" [selected]="editIncident.status == 'cancelled'">Annuler</option>
+                          <option value="new" [selected]="editIncident.status == 'new'">Nouveau</option>
+                          <option value="pending" [selected]="editIncident.status == 'pending'">En cours</option>
+                        </select>
+                      </td>
+                 </div>
+                <input type="hidden" ngModel="{{editIncident?.id}}" name="id" class="form-control" id="id" placeholder="id">
+                <!-- <input type="hidden" ngModel="{{editIncident?.employeeCode}}" name="userCode" class="form-control" id="userCode" placeholder="Email"> -->
+                <div class="form-group">
+                   <label for="priorite">Priorite</label>
+                   <input type="priorite" ngModel="{{editIncident?.priorite}}" name="priorite" class="form-control" id="priorite" placeholder="priorite">
+                </div>
+                <!-- <div class="form-group">
+                   <label for="password">Password</label>
+                   <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                </div> -->
+                <!-- <div class="form-group">
+                   <label for="phone">Phone</label>
+                   <input type="text" ngModel="{{editEmployee?.phone}}" name="phone" class="form-control" id="phone" name="phone" placeholder="Phone">
+                </div>
+                <div class="form-group">
+                   <label for="phone">Image URL</label>
+                   <input type="text" ngModel="{{editEmployee?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL">
+                </div> -->
+                <div class="modal-footer">
+                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Fermer</button>
+                   <button (click)="onUpdateIncident(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Sauvgarder</button>
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
  
  </body>
  

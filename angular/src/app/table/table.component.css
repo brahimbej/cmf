@@ -331,9 +331,31 @@ thead th.active,tbody td.active {
 
 button {
     padding: .4rem 0;
-    border-radius: 5pxa;
+    border-radius: 5px;
     text-align: center;
     background-color: #86e49d;
     color: #006b21;
     width: 150px;
+}
+
+.deletebtn {
+    padding: .4rem 0;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #d70000;
+    color: #ffffff;
+    width: 100px;
+    border-color: #d70000;
+    
+}
+
+.editbtn {
+    padding: .4rem 0;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #00d75a;
+    color: #ffffff;
+    width: 100px;
+    border-color: #00d75a;
+    
 }

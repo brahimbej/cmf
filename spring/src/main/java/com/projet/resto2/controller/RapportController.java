@@ -23,7 +23,7 @@ public class RapportController {
         System.out.println("rapport here");
         System.out.println("rapport");
         System.out.println("rapport"+rapport.getDescription());
-        System.out.println("rapport"+rapport.getIncident());
+        System.out.println("rapport"+rapport.getIncidentId());
         rapportRepository.save(rapport);
         if (rapport == null)
             return new ResponseEntity<>

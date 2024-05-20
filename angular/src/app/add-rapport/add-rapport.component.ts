@@ -19,7 +19,7 @@ export class AddRapportComponent {
   ngOnInit(): void {
     this.FormInput = this.FB.group({
       
-      incident:['',[Validators.required]],
+      incidentId:['',[Validators.required]],
       description:['',[Validators.required]],
       
     }) 
@@ -29,18 +29,18 @@ export class AddRapportComponent {
   submit() {
     // Afficher les informations du formulaire dans la console
     console.log("Form input:", this.FormInput.value);
-  const rapport = {
-    incident : {
-      id : this.FormInput.value.incident
-    },
-    description : this.FormInput.value.description
-  }
+  // const rapport = {
+  //   incident : {
+  //     id : this.FormInput.value.incident
+  //   },
+  //   description : this.FormInput.value.description
+  // }
 
-  console.log(rapport)
+  // console.log(rapport)
     
 console.log(this.FormInput.value)
 
-    this.rapportService.addRapport(rapport).subscribe(
+    this.rapportService.addRapport(this.FormInput.value).subscribe(
       (response: any) => {
         console.log('success:', response);
         

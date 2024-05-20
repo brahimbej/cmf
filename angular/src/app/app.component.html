@@ -27,14 +27,14 @@
                 </div>
             </div>
             <ul class="sidebar-nav">
-                <li class="sidebar-item">
+                <li class="sidebar-item" >
                     <a href="/all_users" class="sidebar-link">
                         <i class="lni lni-user"></i>
                         <span>Gestion Utilisateurs
                         </span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item" >
                     <a href="/listrapport" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
                         <span>Rapports</span>
@@ -46,11 +46,18 @@
                         <span>Dashboard</span>
                     </a>
                 </li> -->
-                <li class="sidebar-item">
+                <li class="sidebar-item" >
                     <a href="/login" class="sidebar-link">
                         <i class="lni lni-protection"></i>
                         <span>Login</span>
                     </a>
+                </li>
+                    <li class="sidebar-item" (click) ="Logout()">
+                        <a  class="sidebar-link" href="#">
+                            <i class="lni lni-protection"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li> 
                     <!-- <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Login</a>
@@ -95,6 +102,7 @@
                         <span>Setting</span>
                     </a>
                 </li> -->
+               
             </ul>
             <!-- <div class="sidebar-footer">
                 <a href="#" class="sidebar-link">

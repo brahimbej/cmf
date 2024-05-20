@@ -23,8 +23,8 @@ public class Incident {
     private String echeance;
     private String status;
     private String priorite;
-    @OneToMany(mappedBy = "incident")
-    private List<Rapport> rapport = new ArrayList<>();
+//    @OneToMany(mappedBy = "incident")
+//    private List<Rapport> rapport = new ArrayList<>();
 
     @Override
     public String toString() {

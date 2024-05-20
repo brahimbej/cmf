@@ -24,6 +24,10 @@ export class IncidentService {
     return this.httpclient.post<{ incident: any }>(`${this.IncidentUrl}/`, obj, this.httpOptions);
   }
 
+  deleteIncident(id:any): Observable<{ id: any}> {
+    return this.httpclient.delete<{ id: any }>(`${this.IncidentUrl}/delete/${id}`, this.httpOptions);
+}
+
   getAllIncidents(): Observable<{ incidents: any}> {
     return this.httpclient.get<{ incidents: any }>(`${this.IncidentUrl}/getAll`, this.httpOptions);
   }

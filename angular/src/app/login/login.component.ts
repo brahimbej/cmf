@@ -39,7 +39,7 @@ export class LoginComponent {
       (response: any) => {
         console.log('success:', response);
             localStorage.setItem('token',response.jwt)
-      
+          this.authService.setloggedIn(true);
               this.route.navigate(['/dashboard']); // Utiliser la route admin appropriée
             }, (error : any) => {
               console.log('error:', error);

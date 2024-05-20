@@ -2,6 +2,7 @@ package com.projet.resto2.controller;
 
 import com.projet.resto2.dto.SignupRequest;
 import com.projet.resto2.entity.Incident;
+import com.projet.resto2.entity.Rapport;
 import com.projet.resto2.repository.IncidentRepository;
 import com.projet.resto2.repository.UserRepository;
 import com.projet.resto2.services.jwt.UserService;
@@ -40,5 +41,14 @@ public class IncidentController {
         List<Incident> incidents = incidentRepository.findAll();
         System.out.println(incidents);
         return new ResponseEntity<>(incidents, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteIncident(@PathVariable Long id) {
+
+        incidentRepository.deleteById(id);
+
+
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 }

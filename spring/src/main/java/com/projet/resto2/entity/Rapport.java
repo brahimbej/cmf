@@ -11,9 +11,9 @@ public class Rapport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
     private String description;
-    @ManyToOne
-    @JoinColumn(name = "incident_id")
-    private Incident incident;
+//    @ManyToOne
+//    @JoinColumn(name = "incident_id")
+    private long incidentId;
 
     @Override
     public String toString() {

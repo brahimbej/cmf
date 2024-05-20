@@ -9,6 +9,7 @@ import { TableComponent } from './table/table.component';
 import { ListRapportComponent } from './list-rapport/list-rapport.component';
 import { AddRapportComponent } from './add-rapport/add-rapport.component';
 import { CrudUsersComponent } from './crud-users/crud-users.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {path:"login", component:LoginComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:"ajout_incident_form", component:AjoutIncidentFormComponent},
   {path:"ajout_rapport_form", component:AddRapportComponent},
   {path:"all_users", component:CrudUsersComponent},
-  {path:"", component:HomeComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent }  // Wildcard route for a 404 page
 
 ];
 
