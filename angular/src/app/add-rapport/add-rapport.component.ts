@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { RapportService } from '../services/rapport.service';
+import { IncidentService } from '../services/incident.service';
 
 @Component({
   selector: 'app-add-rapport',
@@ -11,11 +12,20 @@ import { RapportService } from '../services/rapport.service';
 })
 export class AddRapportComponent {
   FormInput!:FormGroup;
-  errormsg:String=""
+  errormsg:String="";
+  listIncidents!:any[];
+  selectedItemId: any;
    
-  constructor(private FB:FormBuilder, private rapportService:RapportService, private route: Router){
-
+  constructor(private FB:FormBuilder, private rapportService:RapportService, private route: Router,private incidentService : IncidentService){
+     // Default to the first item
   }
+
+
+  onSelectionChange(event: any) {
+    this.selectedItemId = event.target.value;
+    console.log('Selected item ID:', this.selectedItemId);
+  }
+  
   ngOnInit(): void {
     this.FormInput = this.FB.group({
       
@@ -23,6 +33,18 @@ export class AddRapportComponent {
       description:['',[Validators.required]],
       
     }) 
+
+    this.FormInput.get('incidentId')!.valueChanges.subscribe(selectedValue => {
+      console.log('Selected incident ID:', selectedValue);
+    });
+
+    this.incidentService.getAllIncidents().subscribe(
+      (response : any) => {
+        console.log(response);
+        this.listIncidents= response;
+        this.selectedItemId = this.listIncidents[0].id;
+      }
+    )
       
   }
 

@@ -5,9 +5,14 @@
         <h4>Ajout Rapport</h4>
         <!-- <p>Welcome back! Log in to your account to view today's clients:</p> -->
         <div class="floating-label">
-          <input placeholder="incident" type="text" name="incidentId" id="incidentId" autocomplete="off" formControlName="incidentId">
-          <label for="incident">Incident:</label>
-
+          <!-- <input placeholder="incident" type="text" name="incidentId" id="incidentId" autocomplete="off" formControlName="incidentId"> -->
+          <!-- <label for="incident">Incident:</label> -->
+          <select name="incidentId" id="incidentId" formControlName="incidentId" class="select">
+            <option value="" disabled selected>Choisir un incident</option>
+            <option *ngFor="let item of listIncidents" [value]="item.id">
+              {{ item.incident }}
+            </option>
+          </select>
         </div>
         <div class="floating-label">
             <textarea name="description" id="description" cols="30" rows="10" placeholder="description" formControlName="description"></textarea>
