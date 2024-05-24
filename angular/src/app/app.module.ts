@@ -7,7 +7,6 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TableComponent } from './table/table.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -24,7 +23,6 @@ import { MailComponent } from './mail/mail.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    DashboardComponent,
     NavbarComponent,
     TableComponent,
     SidebarComponent,
