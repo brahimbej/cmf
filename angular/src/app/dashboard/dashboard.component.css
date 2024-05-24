@@ -1,7 +1,0 @@
-.row {
-    display: flex; /* This makes the container a flex container */
-    justify-content: space-between; /* This aligns the items along the main axis with space between them */
-    align-items: center; /* This aligns the items along the cross axis */
-    border: 2px solid #333; /* Just for visualization */
-    padding: 10px; /* Just for visualization */
-}

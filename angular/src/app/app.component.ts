@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { JwtService } from './services/jwt.service';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,6 @@ export class AppComponent {
       this.router.navigate(['login']);
     
   }
-  constructor(private http: HttpClient, private router: Router,public authService : AuthService) {}
+  constructor(private http: HttpClient, private router: Router,public authService : AuthService,public jwtService : JwtService) {}
 
 }

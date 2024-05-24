@@ -82,10 +82,16 @@ public class AuthController {
 //        Optional<User> optionalUser = userRepository.findFirstByEmail(userDetails.getUsername());
         String jwt;
         if (optionalUser.isPresent()) {
+            System.out.println("here1");
+            System.out.println(optionalUser.get());
             jwt = jwtUtil.generateToken(optionalUser.get());
         }
-        else
+        else {
+            System.out.println("here2");
+            System.out.println(userDetails);
             jwt = jwtUtil.generateToken(userDetails);
+        }
+
         AuthenticationResponse authenticationResponse = new AuthenticationResponse();
         if (optionalUser.isPresent()) {
             authenticationResponse.setJwt(jwt);

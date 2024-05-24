@@ -20,7 +20,14 @@
             <label for="priorite">Priorite:</label>
   
           </div>
-          
+
+          <div class="incident-success" *ngIf="message">
+            <h5  ><b>{{message}}</b></h5>
+          </div>
+
+          <div class="incident-error" *ngIf="error">
+            <h5  ><b>{{error}}</b></h5>
+          </div>
         <button type="submit">Ajout</button>
       </form>
     </div>

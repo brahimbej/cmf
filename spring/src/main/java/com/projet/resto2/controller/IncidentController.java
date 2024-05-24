@@ -25,7 +25,9 @@ public class IncidentController {
 
     @PostMapping("/")
     public ResponseEntity<?> creerIncident(@RequestBody Incident incident) {
-
+        if (incident.getIncident().isEmpty() || incident.getType().isEmpty() || incident.getPriorite().isEmpty()) {
+            return new ResponseEntity<>(incident, HttpStatus.BAD_REQUEST);
+        }
         incident.setStatus("En cours");
         incidentRepository.save(incident);
         if (incident == null)

@@ -17,6 +17,7 @@ import { ListRapportComponent } from './list-rapport/list-rapport.component';
 import { AddRapportComponent } from './add-rapport/add-rapport.component';
 import { CrudUsersComponent } from './crud-users/crud-users.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MailComponent } from './mail/mail.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ListRapportComponent,
     AddRapportComponent,
     CrudUsersComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Convert | Export html Table to CSV & EXCEL File</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+</head>
+
+<body>
+    <main class="table" id="customers_table" id="main-container">
+        <section class="table__header">
+            <h1>Mail</h1>
+            <div class="input-group">
+                <input type="search" placeholder="Search Data...">
+                <!-- <img src="images/search.png" alt=""> -->
+            </div>
+            <!-- <div class="export__file">
+                <label for="export-file" class="export__file-btn" title="Export File"></label>
+                <input type="checkbox" id="export-file">
+                <div class="export__file-options">
+                    <label>Export As &nbsp; &#10140;</label>
+                    <label for="export-file" id="toPDF">PDF <img src="images/pdf.png" alt=""></label>
+                    <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""></label>
+                    <label for="export-file" id="toCSV">CSV <img src="images/csv.png" alt=""></label>
+                    <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""></label>
+                </div>
+            </div> -->
+            <a href="/ajout_incident_form"><button class="addbutton">Ajout ticket</button></a>
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Id <span class=""></span></th>
+                        <th> mailBody <span class="icon-arrow"></span></th>
+                        <th> sender <span class="icon-arrow"></span></th>
+                
+                        <th> Options <span class="icon-arrow"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <!-- cancelled shipped pending-->
+                    <tr *ngFor="let incident of listIncidents">
+                        <td> {{incident.id}} </td>
+                        <td> {{incident.incident}}</td>
+                        <td> {{incident.type}} </td>
+                        <td> {{incident.echeance}}  </td>
+                        <td>
+                            <p *ngIf="incident.status == 'Fini'" class="status delivered">Fini</p>
+                            <p *ngIf="incident.status == 'Annuler'" class="status cancelled">Annuler</p>
+                            <p *ngIf="incident.status == 'Nouveau'" class="status shipped">Nouveau</p>
+                            <p *ngIf="incident.status == 'En cours'" class="status pending">En cours</p>
+                        </td>
+                        <td> <strong> {{incident.priorite}}  </strong></td>
+                        <td>
+                           <button class="deletebtn" (click)="deleteIncident(incident.id)">
+                               Supprimer
+                           </button>
+                           <button class="editbtn" (click)="onOpenModal(incident, 'edit')" data-placement="top" data-original-title="Edit">
+                               Modifier
+                           </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="script.js"></script>
+
+    <!-- Edit Modal -->
+ <div class="modal fade" id="updateIncidentModal" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="updateEmployeeModalLabel">Modifier Incident {{editIncident?.incident}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #editForm="ngForm">
+               <div class="form-group">
+                  <label for="name">Incident</label>
+                  <input type="text" ngModel="{{editIncident?.incident}}" name="incident" class="form-control" id="incident"  placeholder="incident">
+               </div>
+               <div class="form-group">
+                   <label for="name">Type</label>
+                   <input type="text" ngModel="{{editIncident?.type}}" name="type" class="form-control" id="type"  placeholder="type">
+                </div>
+                <div class="form-group">
+                   <label for="name">Status</label>
+                   <td>
+                       <select  class="form-control status" ngModel="{{editIncident?.status}}" name="status" id="status">
+                         <option value="Fini" [selected]="editIncident?.status == 'Fini'">Fini</option>
+                         <option value="Annuler" [selected]="editIncident?.status == 'Annuler'">Annuler</option>
+                         <option value="Nouveau" [selected]="editIncident?.status == 'Nouveau'">Nouveau</option>
+                         <option value="En cours" [selected]="editIncident?.status == 'En cours'">En cours</option>
+                       </select>
+                     </td>
+                </div>
+               <input type="hidden" ngModel="{{editIncident?.id}}" name="id" class="form-control" id="id" placeholder="id">
+               <!-- <input type="hidden" ngModel="{{editIncident?.employeeCode}}" name="userCode" class="form-control" id="userCode" placeholder="Email"> -->
+               <div class="form-group">
+                  <label for="priorite">Priorite</label>
+                  <input type="priorite" ngModel="{{editIncident?.priorite}}" name="priorite" class="form-control" id="priorite" placeholder="priorite">
+               </div>
+               <!-- <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+               </div> -->
+               <!-- <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" ngModel="{{editEmployee?.phone}}" name="phone" class="form-control" id="phone" name="phone" placeholder="Phone">
+               </div>
+               <div class="form-group">
+                  <label for="phone">Image URL</label>
+                  <input type="text" ngModel="{{editEmployee?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL">
+               </div> -->
+               <div class="modal-footer">
+                  <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Fermer</button>
+                  <button (click)="onUpdateIncident(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Sauvgarder</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+ </div>
+
+</body>
+
+</html>

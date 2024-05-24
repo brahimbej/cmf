@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { IncidentService } from '../services/incident.service';
+import { JwtService } from '../services/jwt.service';
 
 @Component({
   selector: 'app-ajout-incident-form',
@@ -12,9 +13,12 @@ import { IncidentService } from '../services/incident.service';
 export class AjoutIncidentFormComponent {
 
   FormInput!:FormGroup;
-  errormsg:String=""
+  errormsg:String="";
+  message!:any;
+  error!:any;
+  
    
-  constructor(private FB:FormBuilder, private incidentService:IncidentService, private route: Router){
+  constructor(private FB:FormBuilder, private incidentService:IncidentService, private route: Router, private jwtService : JwtService){
 
   }
   ngOnInit(): void {
@@ -44,15 +48,24 @@ this.FormInput.value.echeance = formattedDate;
     this.incidentService.addIncident(this.FormInput.value).subscribe(
       (response: any) => {
         console.log('success:', response);
-        
-      
-              this.route.navigate(['/dashboard']); // Utiliser la route admin appropriée
+            if (this.jwtService.isAdmin())
+              this.route.navigate(['/dashboard']);
+            this.error="";
+            this.message="l'incident est ajouté";
+
+               // Utiliser la route admin appropriée
             }, (error : any) => {
+              this.message="";
+              this.error="l'incident n'est pas ajouté";
               console.log('error:', error);
             }
         
       
     );
+  }
+
+  ajoutMail() {
+
   }
 
 }

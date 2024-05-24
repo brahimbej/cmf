@@ -26,39 +26,48 @@
                     <a href="#">CIMF</a>
                 </div>
             </div>
-            <ul class="sidebar-nav">
-                <li class="sidebar-item" >
+            <ul class="sidebar-nav" >
+                <li class="sidebar-item" *ngIf="jwtService.isAdmin()">
                     <a href="/all_users" class="sidebar-link">
                         <i class="lni lni-user"></i>
                         <span>Gestion Utilisateurs
                         </span>
                     </a>
                 </li>
-                <li class="sidebar-item" >
+                <li class="sidebar-item" *ngIf="jwtService.isAdmin()">
                     <a href="/listrapport" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
                         <span>Rapports</span>
                     </a>
                 </li>
-                <li class="sidebar-item" >
+                <li class="sidebar-item" *ngIf="jwtService.isAdmin()">
                     <a href="/dashboard" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li class="sidebar-item" *ngIf="jwtService.isAdmin() || jwtService.isUser()">
+                    <a href="/ajout_incident_form" class="sidebar-link">
+                        <i class="lni lni-agenda"></i>
+                        <span>Ajout Incident</span>
+                    </a>
+                </li>
+
+                
+
                 <!-- <li class="sidebar-item">
                     <a href="/dashboard" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
                         <span>Dashboard</span>
                     </a>
                 </li> -->
-                <li class="sidebar-item" >
+                <li class="sidebar-item" *ngIf="!jwtService.isConnected()" >
                     <a href="/login" class="sidebar-link">
                         <i class="lni lni-protection"></i>
                         <span>Login</span>
                     </a>
                 </li>
-                    <li class="sidebar-item" (click) ="Logout()">
+                    <li class="sidebar-item" (click) ="Logout()" *ngIf="jwtService.isConnected()">
                         <a  class="sidebar-link" href="#">
                             <i class="lni lni-protection"></i>
                             <span>Logout</span>

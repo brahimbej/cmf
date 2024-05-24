@@ -11,7 +11,7 @@ html, body {
   display:  flex; 
   align-items:  flex-start; 
   justify-content:  flex-start; 
-  background:  #f3f2f2; 
+  background:  #2c2c2c; 
 }
 h4 {
   font-size:  24px; 
@@ -187,4 +187,30 @@ input {
     width:  auto; 
     margin:  20px; 
   }
+}
+
+.incident-success {
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.incident-success p {
+  color: #019d23;
+  text-decoration: #019d23;
+  text-size-adjust: 20px;
+}
+
+.incident-error {
+  margin-left: auto;
+  margin-right: auto;
+  color: #c50505;
+  text-decoration: #c50505;
+}
+
+.incident-error p {
+  color: #c50505;
+  text-decoration: #c50505;
+  text-size-adjust: 20px;
+
 }

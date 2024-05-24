@@ -1,4 +1,5 @@
 package com.projet.resto2.utils;
+import com.projet.resto2.entity.User;
 import io.jsonwebtoken.*;
 
 import io.jsonwebtoken.io.Decoders;
@@ -38,8 +39,10 @@ public class JWTUtil {
     public String generateToken(
             Map<String, Object> extraClaims,
             UserDetails userDetails) {
-        System.out.println("username+"+userDetails.getUsername());
-//        System.out.println("username+"+userDetails());
+        extraClaims.put("email", userDetails.getUsername());
+        extraClaims.put("userRole", ((User)userDetails).getUserRole());
+        extraClaims.put("id", ((User)userDetails).getId());
+        extraClaims.put("name", ((User)userDetails).getName());
         return  Jwts
                 .builder()
                 .setClaims(extraClaims)

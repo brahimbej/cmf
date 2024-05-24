@@ -39,7 +39,7 @@ public class AuthServiceImpl implements AuthService{
         user.setName(signupRequest.getName());
         user.setEmail(signupRequest.getEmail());
         user.setPassword(new BCryptPasswordEncoder().encode(signupRequest.getPassword()));
-        user.setUserRole(UserRole.CUSTOMER);
+        user.setUserRole(signupRequest.getUserRole());
         User createdUser = userRepository.save(user);
         UserDto UserDto = new UserDto();
         UserDto.setId(createdUser.getId());
@@ -56,7 +56,7 @@ public class AuthServiceImpl implements AuthService{
         user.setName(userRequest.getName());
         user.setEmail(userRequest.getEmail());
         user.setPassword(new BCryptPasswordEncoder().encode(userRequest.getPassword()));
-        user.setUserRole(UserRole.CUSTOMER);
+        user.setUserRole(userRequest.getUserRole());
         User createdUser = userRepository.save(user);
         UserDto UserDto = new UserDto();
         UserDto.setId(createdUser.getId());

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { JwtService } from '../services/jwt.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
   FormInput!:FormGroup;
   errormsg:String=""
    
-  constructor(private FB:FormBuilder, private authService:AuthService, private route: Router){
+  constructor(private FB:FormBuilder, private authService:AuthService, private route: Router,private jwtService : JwtService){
 
   }
   ngOnInit(): void {
@@ -40,7 +41,11 @@ export class LoginComponent {
         console.log('success:', response);
             localStorage.setItem('token',response.jwt)
           this.authService.setloggedIn(true);
-              this.route.navigate(['/dashboard']); // Utiliser la route admin appropriée
+          if (this.jwtService.isAdmin())
+            this.route.navigate(['/dashboard']);
+          else if (this.jwtService.isUser())
+          this.route.navigate(['/ajout_incident_form']);
+               // Utiliser la route admin appropriée
             }, (error : any) => {
               console.log('error:', error);
               this.errormsg = "verifier votre email ou password"

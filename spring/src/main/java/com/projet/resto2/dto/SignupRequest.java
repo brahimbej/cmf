@@ -1,6 +1,7 @@
 package com.projet.resto2.dto;
 
 
+import com.projet.resto2.enums.UserRole;
 import lombok.Data;
 
 @Data
@@ -11,6 +12,15 @@ public class SignupRequest {
     private String email;
     private String name;
     private String password;
+    private UserRole userRole;
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
 
     public String getName() {
         return name;
